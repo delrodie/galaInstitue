@@ -1,0 +1,13 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css");
+body {
+  background-size: cover;
+  background: url("../images/bg.png") no-repeat;
+}
+
+@media screen and (max-width: 468px) {
+  .affiche img {
+    width: 1000px;
+  }
+}
+
+/*# sourceMappingURL=app.css.map */
