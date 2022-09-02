@@ -32,7 +32,7 @@ class CinetpayController extends AbstractController
 	    $serializer = new Serializer($normalizers, $encoders);
 	
 	    // Initialisation des variables
-	    $id_transaction = $request->get('cpm_trans_id'); dd($id_transaction);
+	    $id_transaction = $request->get('cpm_trans_id'); //dd($id_transaction);
 		
 		if (isset($id_transaction)){
 			try {
@@ -41,7 +41,7 @@ class CinetpayController extends AbstractController
 				
 				$Cinetpay = new CinetPay($site_id, $apikey);
 				
-				$Cinetpay->getPayStatus($id_transaction, $site_id);
+				$Cinetpay->getPayStatus($id_transaction, $site_id); dd($Cinetpay);
 				
 				$amount = $Cinetpay->chk_amount;
 				$currency = $Cinetpay->chk_currency;
