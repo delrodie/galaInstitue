@@ -1,0 +1,130 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Institute 2022 : Formulaire de participation{% endblock %}
+
+{% block body %}
+
+	<div class="formulaire">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h1>Formulaire de participation</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 pl-4">
+				<form action="{{ path('app_participation_new') }}" method="post" id="participation_formulaire" name="participation_formulaire">
+					<div class="mb-3">
+						<label for="participation_pays" class="form-label">Pays</label>
+						<select name="participation_pays" id="participationPays" class="form-select form-control-lg select2">
+							<option value="">-- Selectionnez votre pays --</option>
+							{% for nation in pays %}
+								<option value="{{ nation.id }}">{{ nation.nomFrFr }}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class="mb-3">
+						<label for="participation_nom" class="form-label">Nom</label>
+						<input type="text" class="form-control form-control-lg" name="participation_nom" id="participationNom">
+					</div>
+					<div class="mb-3">
+						<label for="participation_prenoms" class="form-label">Prenoms</label>
+						<input type="text" class="form-control form-control-lg" name="participation_prenoms" id="participationPrenoms">
+					</div>
+					<div class="mb-3">
+						<label for="participation_telephone" class="form-label">Telephone</label>
+						<input type="text" class="form-control form-control-lg" name="participation_telephone" name="participationTelephone">
+					</div>
+					<div class="mb-3">
+						<label for="participation_club" class="form-label">Club</label>
+						<input type="text" class="form-control form-control-lg" name="participation_club" id="participationClub">
+					</div>
+					<div class="mb-3">
+						<label for="participation_nombre_place" class="form-label">Nombre de place</label>
+						<input type="number" class="form-control form-control-lg" name="participation_nombre_place" id="participationNombrePlace">
+					</div>
+					<div class="d-grid gap-2">
+						<button class="btn btn-primary" type="submit">Envoyer</button>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-5 d-md-block">
+				<img src="{{ asset('build/images/affiche.jpeg') }}" alt="" class="img-fluid">
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+
+        // Soumission
+		$("#participation_formulaire").submit(function (event) {
+			console.log("cliquez");
+            event.preventDefault();
+            var post_url = $(this).attr("action");
+            var request_method = $(this).attr("method");
+            var form_data = $(this).serialize();
+            $.ajax({
+				url: post_url,
+				type: request_method,
+				data: form_data,
+				dataType: 'json'
+			}).done(function (response) {
+				console.log(response);
+                if(response.status === true){
+                    CinetPay.setConfig({
+						apikey: '738218945615320aa597ff3.35893469',
+						site_id: '444572',
+						notify_url: '{{ absolute_url(path('app_cinetpay_notify')) }}',
+						return_url: '{{ absolute_url(path('app_participation_new')) }}',
+						mode: 'PRODUCTION'
+					});
+					CinetPay.getCheckout({
+						transaction_id: response.transaction_id,
+						amount: response.amount,
+						currency: 'XOF',
+						channels: 'ALL',
+						description: 'Participation Gala Institute',
+                        notify_url: '{{ absolute_url(path('app_cinetpay_notify')) }}',
+                        return_url: '{{ absolute_url(path('app_participation_new')) }}',
+						customer_name: response.customer_name,
+						customer_surname: response.customer_surname,
+						customer_phone_number: response.customer_phone_number,
+						customer_city: response.customer_city,
+						customer_country: response.customer_country,
+						customer_state: response.customer_country,
+						customer_zip_code: '00225',
+						customer_id: response.customer_id,
+						customer_email: response.customer_email,
+						customer_address: response.customer_address,
+					});
+                    CinetPay.waitResponse(function (data) {
+						if (data.status == "REFUSED"){
+                            if (alert("Votre paiement a échoué")){
+                                window.location.reload()
+							}
+						}else if(data.status == "ACCEPTED"){
+                            if (alert("Votre paiement a été effectué avec succès")){
+                                window.location.reload();
+							}
+						}
+                    });
+                    CinetPay.onError(function (data) {
+						console.log(data)
+                    });
+				}
+            })
+        })
+	</script>
+{% endblock %}

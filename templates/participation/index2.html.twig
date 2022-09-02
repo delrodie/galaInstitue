@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Institute 2022 : Formulaire de participation{% endblock %}
+
+{% block body %}
+
+	<div class="formulaire">
+		<div class="row">
+			<div class="col-12 text-center">
+				<h1>Formulaire de participation</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-6 pl-4">
+				<form action="{{ path('app_participation_new') }}" method="post" id="participation_formulaire" name="participation_formulaire">
+					<div class="mb-3">
+						<label for="participation_pays" class="form-label">Pays</label>
+						<select name="participation_pays" id="participationPays" class="form-select form-control-lg select2">
+							<option value="">-- Selectionnez votre pays --</option>
+							{% for nation in pays %}
+								<option value="{{ nation.id }}">{{ nation.nomFrFr }}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<div class="mb-3">
+						<label for="participation_nom" class="form-label">Nom</label>
+						<input type="text" class="form-control form-control-lg" name="participation_nom" id="participationNom">
+					</div>
+					<div class="mb-3">
+						<label for="participation_prenoms" class="form-label">Prenoms</label>
+						<input type="text" class="form-control form-control-lg" name="participation_prenoms" id="participationPrenoms">
+					</div>
+					<div class="mb-3">
+						<label for="participation_telephone" class="form-label">Telephone</label>
+						<input type="text" class="form-control form-control-lg" name="participation_telephone" name="participationTelephone">
+					</div>
+					<div class="mb-3">
+						<label for="participation_club" class="form-label">Club</label>
+						<input type="text" class="form-control form-control-lg" name="participation_club" id="participationClub">
+					</div>
+					<div class="mb-3">
+						<label for="participation_nombre_place" class="form-label">Nombre de place</label>
+						<input type="number" class="form-control form-control-lg" name="participation_nombre_place" id="participationNombrePlace">
+					</div>
+					<div class="d-grid gap-2">
+						<button class="btn btn-primary" type="submit">Envoyer</button>
+					</div>
+				</form>
+			</div>
+			<div class="col-md-5 d-md-block">
+				<img src="{{ asset('build/images/affiche.jpeg') }}" alt="" class="img-fluid">
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+{% endblock %}
+{% block javascripts %}
+	{{ parent() }}
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script>
+        $(document).ready(function() {
+            $('.select2').select2();
+        });
+
+        // Soumission
+		$("#participation_formulaire").submit(function (event) {
+			console.log("cliquez");
+            event.preventDefault();
+            var post_url = $(this).attr("action");
+            var request_method = $(this).attr("method");
+            var form_data = $(this).serialize();
+            $.ajax({
+				url: post_url,
+				type: request_method,
+				data: form_data,
+				dataType: 'json'
+			}).done(function (response) {
+				console.log(response);
+                var axios = require(axios).default();
+                var data = JSON.stringify({
+                    "apikey": "738218945615320aa597ff3.35893469",
+                    "site_id": "444572",
+                    "transaction_id":  Math.floor(Math.random() * 100000000).toString(), //
+                    "amount": 100,
+                    "currency": "XOF",
+                    "alternative_currency": "",
+                    "description": " TEST INTEGRATION ",
+                    "customer_id": "172",
+                    "customer_name": "KOUADIO",
+                    "customer_surname": "Francisse",
+                    "customer_email": "harrissylver@gmail.com",
+                    "customer_phone_number": "+225004315545",
+                    "customer_address": "Antananarivo",
+                    "customer_city": "Antananarivo",
+                    "customer_country": "CM",
+                    "customer_state": "CM",
+                    "customer_zip_code": "065100",
+                    "notify_url": "https://webhook.site/d1dbbb89-52c7-49af-a689-b3c412df820d",
+                    "return_url": "https://webhook.site/d1dbbb89-52c7-49af-a689-b3c412df820d",
+                    "channels": "ALL",
+                    "metadata": "user1",
+                    "lang": "FR",
+                    "invoice_data": {
+                        "Donnee1": "",
+                        "Donnee2": "",
+                        "Donnee3": ""
+                    }
+                });
+
+                var config = {
+                    method: 'post',
+                    url: 'https://api-checkout.cinetpay.com/v2/payment',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    data : data
+                };
+
+                axios(config)
+                    .then(function (response) {
+                        console.log(JSON.stringify(response.data));
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            })
+        })
+	</script>
+{% endblock %}

@@ -5,11 +5,31 @@ body {
     background: url("../images/bg.png") no-repeat;
 }
 
+.formulaire{
+    margin: 50px auto;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+
+    h1{
+        color: purple;
+    }
+
+    form{
+        padding-left: 100px;
+        margin-left: 20px;
+    }
+}
 
 @media screen and (max-width: 468px) {
     .affiche{
         img{
             width: 1000px;
+        }
+    }
+    .formulaire{
+        form{
+            padding-left: 0;
+            margin-left: 0;
         }
     }
 }

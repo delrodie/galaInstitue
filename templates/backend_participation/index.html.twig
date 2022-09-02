@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Participation index{% endblock %}
+
+{% block body %}
+    <h1>Participation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Club</th>
+                <th>Nom</th>
+                <th>Prenoms</th>
+                <th>Tel</th>
+                <th>Ville</th>
+                <th>Montant</th>
+                <th>Status</th>
+                <th>IdTransaction</th>
+                <th>StatutsTransaction</th>
+                <th>Reference</th>
+                <th>CreatedAt</th>
+                <th>Slug</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for participation in participations %}
+            <tr>
+                <td>{{ participation.id }}</td>
+                <td>{{ participation.club }}</td>
+                <td>{{ participation.nom }}</td>
+                <td>{{ participation.prenoms }}</td>
+                <td>{{ participation.tel }}</td>
+                <td>{{ participation.ville }}</td>
+                <td>{{ participation.montant }}</td>
+                <td>{{ participation.status }}</td>
+                <td>{{ participation.idTransaction }}</td>
+                <td>{{ participation.statutsTransaction }}</td>
+                <td>{{ participation.reference }}</td>
+                <td>{{ participation.createdAt ? participation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ participation.slug }}</td>
+                <td>
+                    <a href="{{ path('app_backend_participation_show', {'id': participation.id}) }}">show</a>
+                    <a href="{{ path('app_backend_participation_edit', {'id': participation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_backend_participation_new') }}">Create new</a>
+{% endblock %}
