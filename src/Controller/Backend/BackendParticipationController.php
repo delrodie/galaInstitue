@@ -16,6 +16,7 @@ class BackendParticipationController extends AbstractController
     #[Route('/', name: 'app_backend_participation_index', methods: ['GET'])]
     public function index(ParticipationRepository $participationRepository): Response
     {
+		$participation = $participationRepository->findOneBy(['idTransaction'=>'1662131416.396']); dd($participation);
         return $this->render('backend_participation/index.html.twig', [
             'participations' => $participationRepository->findAll(),
         ]);
