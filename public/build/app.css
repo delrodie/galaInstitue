@@ -1,0 +1,36 @@
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].oneOf[1].use[1]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[4].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].oneOf[1].use[3]!./assets/styles/app.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
+@import url(https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css);
+/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].oneOf[1].use[1]!./node_modules/resolve-url-loader/index.js??ruleSet[1].rules[4].oneOf[1].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].oneOf[1].use[3]!./assets/styles/app.scss (1) ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************/
+body {
+  background-size: cover;
+  background: url(/build/images/bg.4dd58a5c.png) no-repeat;
+}
+
+.formulaire {
+  margin: 50px auto;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 5px;
+}
+.formulaire h1 {
+  color: purple;
+}
+.formulaire form {
+  padding-left: 100px;
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 468px) {
+  .affiche img {
+    width: 1000px;
+  }
+  .formulaire form {
+    padding-left: 0;
+    margin-left: 0;
+  }
+}
+
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwLmNzcyIsIm1hcHBpbmdzIjoiOzs7Ozs7O0FBRUE7RUFDSTtFQUNBO0FBQUo7O0FBR0E7RUFDSTtFQUNBO0VBQ0E7QUFBSjtBQUVJO0VBQ0k7QUFBUjtBQUdJO0VBQ0k7RUFDQTtBQURSOztBQUtBO0VBRVE7SUFDSTtFQUhWO0VBT007SUFDSTtJQUNBO0VBTFY7QUFDRixDIiwic291cmNlcyI6WyJ3ZWJwYWNrOi8vLy4vYXNzZXRzL3N0eWxlcy9hcHAuc2NzcyJdLCJzb3VyY2VzQ29udGVudCI6WyJAaW1wb3J0IHVybChcImh0dHBzOi8vY2RuLmpzZGVsaXZyLm5ldC9ucG0vYm9vdHN0cmFwQDUuMi4wL2Rpc3QvY3NzL2Jvb3RzdHJhcC5taW4uY3NzXCIpO1xuXG5ib2R5IHtcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xuICAgIGJhY2tncm91bmQ6IHVybChcIi4uL2ltYWdlcy9iZy5wbmdcIikgbm8tcmVwZWF0O1xufVxuXG4uZm9ybXVsYWlyZXtcbiAgICBtYXJnaW46IDUwcHggYXV0bztcbiAgICBiYWNrZ3JvdW5kOiByZ2JhKDI1NSwgMjU1LCAyNTUsIDAuOCk7XG4gICAgYm9yZGVyLXJhZGl1czogNXB4O1xuXG4gICAgaDF7XG4gICAgICAgIGNvbG9yOiBwdXJwbGU7XG4gICAgfVxuXG4gICAgZm9ybXtcbiAgICAgICAgcGFkZGluZy1sZWZ0OiAxMDBweDtcbiAgICAgICAgbWFyZ2luLWxlZnQ6IDIwcHg7XG4gICAgfVxufVxuXG5AbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiA0NjhweCkge1xuICAgIC5hZmZpY2hle1xuICAgICAgICBpbWd7XG4gICAgICAgICAgICB3aWR0aDogMTAwMHB4O1xuICAgICAgICB9XG4gICAgfVxuICAgIC5mb3JtdWxhaXJle1xuICAgICAgICBmb3Jte1xuICAgICAgICAgICAgcGFkZGluZy1sZWZ0OiAwO1xuICAgICAgICAgICAgbWFyZ2luLWxlZnQ6IDA7XG4gICAgICAgIH1cbiAgICB9XG59XG4iXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=*/
