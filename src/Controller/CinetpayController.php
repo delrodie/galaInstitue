@@ -42,7 +42,7 @@ class CinetpayController extends AbstractController
 				
 				$Cinetpay = new CinetPay($site_id, $apikey);
 				
-				$Cinetpay->getPayStatus($id_transaction, $site_id); dd($Cinetpay);
+				$Cinetpay->getPayStatus($id_transaction, $site_id); //dd($Cinetpay);
 				
 				$amount = $Cinetpay->chk_amount;
 				$currency = $Cinetpay->chk_currency;
