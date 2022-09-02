@@ -41,7 +41,7 @@ class CinetpayController extends AbstractController
 				
 				$Cinetpay = new CinetPay($site_id, $apikey);
 				
-				$Cinetpay->getPayStatus($id_transaction, $site_id); dd($Cinetpay);
+				$Cinetpay->getPayStatus($id_transaction, $site_id); //dd($Cinetpay);
 				
 				$amount = $Cinetpay->chk_amount;
 				$currency = $Cinetpay->chk_currency;
@@ -54,7 +54,7 @@ class CinetpayController extends AbstractController
 					"Message: ".$message.PHP_EOL.
 					"Amount: ".$amount.PHP_EOL.
 					"currency: ".$currency.PHP_EOL.
-					"--------------------------------------".PHP_EOL;
+					"--------------------------------------".PHP_EOL; dd($log);
 				
 				file_put_contents('./log_'.date("j.n.Y").'.log', $log, FILE_APPEND);
 				
