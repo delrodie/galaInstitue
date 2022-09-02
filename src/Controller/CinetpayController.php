@@ -54,7 +54,7 @@ class CinetpayController extends AbstractController
 					"Message: ".$message.PHP_EOL.
 					"Amount: ".$amount.PHP_EOL.
 					"currency: ".$currency.PHP_EOL.
-					"--------------------------------------".PHP_EOL; dd($log);
+					"--------------------------------------".PHP_EOL; //dd($log);
 				
 				file_put_contents('./log_'.date("j.n.Y").'.log', $log, FILE_APPEND);
 				
@@ -71,7 +71,7 @@ class CinetpayController extends AbstractController
 					//die();
 				}
 				
-				$participation = $this->participationRepository->findOneBy(['idTransaction' => $id_transaction]);
+				$participation = $this->participationRepository->findOneBy(['idTransaction' => $id_transaction]); dd($participation);
 				if ($participation){
 					$participation->setStatutsTransaction('VALIDE');
 					$participation->setStatus(true);
