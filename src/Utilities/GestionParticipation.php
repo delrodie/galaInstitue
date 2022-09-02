@@ -86,7 +86,8 @@
 					'customer_zip_code' => '00225',
 					'metadata' => $reference,
 					'identite' => $participant['nom'].' '.$participant['prenoms'],
-					'place' => $participant['place']
+					'place' => $participant['place'],
+					'reference' => 'Pays: '.$pays->getNomFrFr().' - (Club: '.$participant['club'].')',
 				];
 			}else{
 				$message = [

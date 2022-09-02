@@ -87,7 +87,7 @@
 						apikey: '738218945615320aa597ff3.35893469',
 						site_id: '444572',
 						//notify_url: '{{ absolute_url(path('app_cinetpay_notify')) }}',
-						//return_url: '{{ absolute_url(path('app_participation_new')) }}',
+						//return_url: '{{ absolute_url(path('app_participation')) }}',
 						mode: 'PRODUCTION'
 					});
 					CinetPay.getCheckout({
@@ -97,7 +97,7 @@
 						channels: 'ALL',
 						description: 'Participation Gala Institute',
                         notify_url: '{{ absolute_url(path('app_cinetpay_notify')) }}',
-                        return_url: '{{ absolute_url(path('app_participation_new')) }}',
+                        return_url: '{{ absolute_url(path('app_participation')) }}',
 						metada: response.customer_reference,
 						customer_name: response.customer_name,
 						customer_surname: response.customer_surname,
@@ -112,7 +112,8 @@
 						metadata : response.metadata,
 						invoice_data: {
                             'identite' : response.identite,
-							'place' : response.place
+							'place' : response.place,
+							'reference': response.reference
 						}
 					});
                     CinetPay.waitResponse(function (data) {
@@ -122,9 +123,16 @@
                                 window.location.reload()
 							}
 						}else if(data.status == "ACCEPTED"){
-                            if (alert("Votre paiement a été effectué avec succès")){
-                                window.location.reload();
-							}
+                            Swal.fire({
+								type: 'success',
+								title: 'Felicitation!',
+								text: 'Votre participation a bien été prise en compte',
+								confirmButtonText: 'OK'
+							}).then((result) =>{
+                                if (result.isConfirmed){
+                                    window.location = '{{ absolute_url(path('app_participation')) }}'
+								}
+							})
 						}
                     });
                     CinetPay.onError(function (data) {
