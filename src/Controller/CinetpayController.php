@@ -71,7 +71,7 @@ class CinetpayController extends AbstractController
 					//die();
 				}
 				
-				$participation = $this->participationRepository->findOneBy(['idTransaction' => $id_transaction]); dd($participation);
+				$participation = $this->participationRepository->findOneBy(['idTransaction' => $id_transaction]); dd($id_transaction);
 				if ($participation){
 					$participation->setStatutsTransaction('VALIDE');
 					$participation->setStatus(true);
