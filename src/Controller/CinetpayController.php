@@ -32,8 +32,8 @@ class CinetpayController extends AbstractController
 	    $serializer = new Serializer($normalizers, $encoders);
 	
 	    // Initialisation des variables
-	    $id_transaction = $request->get('cpm_trans_id'); dd($id_transaction);
-	    $participation = $this->participationRepository->findByIdTransaction($id_transaction);
+	    $id_transaction = $request->get('cpm_trans_id'); //dd($id_transaction);
+	    $participation = $this->participationRepository->findByIdTransaction('1662131416.396');
 	    dd($participation);
 		
 		if (isset($id_transaction)){
