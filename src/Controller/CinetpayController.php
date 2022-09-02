@@ -63,12 +63,12 @@ class CinetpayController extends AbstractController
 					$resultat = [
 						'message' => 'Félicitation, votre paiment a été effectué avec succès',
 					];
-					die();
+					//die();
 				}else{
 					$resultat = [
 						'message' => 'Echec, votre paiement a échoué pour cause : '.$message
 					];
-					die();
+					//die();
 				}
 				
 				$participation = $this->participationRepository->findOneBy(['idTransaction' => $id_transaction]);

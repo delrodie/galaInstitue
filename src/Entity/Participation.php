@@ -54,6 +54,12 @@ class Participation
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $pays = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $place = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?int $commission = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -204,10 +210,10 @@ class Participation
     }
 	
 	#[ORM\PrePersist]
-         	public function setCreatedAtValue(): \DateTime
-         	{
-         		return $this->createdAt = new \DateTime();
-         	}
+                           	public function setCreatedAtValue(): \DateTime
+                           	{
+                           		return $this->createdAt = new \DateTime();
+                           	}
 
     public function getPays(): ?string
     {
@@ -217,6 +223,30 @@ class Participation
     public function setPays(?string $pays): self
     {
         $this->pays = $pays;
+
+        return $this;
+    }
+
+    public function getPlace(): ?int
+    {
+        return $this->place;
+    }
+
+    public function setPlace(?int $place): self
+    {
+        $this->place = $place;
+
+        return $this;
+    }
+
+    public function getCommission(): ?int
+    {
+        return $this->commission;
+    }
+
+    public function setCommission(?int $commission): self
+    {
+        $this->commission = $commission;
 
         return $this;
     }

@@ -110,6 +110,7 @@
 						customer_address: response.customer_address,
 					});
                     CinetPay.waitResponse(function (data) {
+                        console.log(data);
 						if (data.status == "REFUSED"){
                             if (alert("Votre paiement a échoué")){
                                 window.location.reload()

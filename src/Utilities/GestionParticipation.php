@@ -25,6 +25,9 @@
 			$id_transaction = time().''.substr(uniqid("",true), -9, 4);
 			$status_paiement = "INCONNU";
 			
+			$amount = (int) $montant/(1 - 0.035);
+			$amount = $this->arrondiSuperieur($amount, 5);
+			
 			$participant = [
 				'nom' => strtoupper($this->validForm($request->get('participation_nom'))),
 				'prenoms' => strtoupper($this->validForm($request->get('participation_prenoms'))),
@@ -62,11 +65,10 @@
 				$participation->setVille($pays->getNomFrFr());
 				$participation->setStatutsTransaction($participant['status_paiement']);
 				$participation->setPays($pays->getAlpha2());
+				$participation->setPlace($participant['place']);
+				$participation->setCommission($amount);
 				
 				$this->participationRepository->add($participation, true);
-				
-				$amount = (int) $montant/(1 - 0.035);
-				$amount = $this->arrondiSuperieur($amount, 5);
 				
 				$message = [
 					'transaction_id' => $id_transaction,
