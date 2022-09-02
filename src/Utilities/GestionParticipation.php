@@ -21,7 +21,7 @@
 		public function formulaire($request)
 		{
 			$slugy = new AsciiSlugger();
-			$montant = abs(strtoupper($this->validForm($request->get('participation_nombre_place')))) * 80000;
+			$montant = abs(strtoupper($this->validForm($request->get('participation_nombre_place')))) * 100;
 			$id_transaction = time().''.substr(uniqid("",true), -9, 4);
 			$status_paiement = "INCONNU";
 			
