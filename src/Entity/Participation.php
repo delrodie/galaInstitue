@@ -60,6 +60,18 @@ class Participation
     #[ORM\Column(nullable: true)]
     private ?int $commission = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $responseId = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $PaymentMethod = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $operatorId = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $paymentDate = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -210,10 +222,10 @@ class Participation
     }
 	
 	#[ORM\PrePersist]
-                           	public function setCreatedAtValue(): \DateTime
-                           	{
-                           		return $this->createdAt = new \DateTime();
-                           	}
+                                                               	public function setCreatedAtValue(): \DateTime
+                                                               	{
+                                                               		return $this->createdAt = new \DateTime();
+                                                               	}
 
     public function getPays(): ?string
     {
@@ -247,6 +259,54 @@ class Participation
     public function setCommission(?int $commission): self
     {
         $this->commission = $commission;
+
+        return $this;
+    }
+
+    public function getResponseId(): ?string
+    {
+        return $this->responseId;
+    }
+
+    public function setResponseId(?string $responseId): self
+    {
+        $this->responseId = $responseId;
+
+        return $this;
+    }
+
+    public function getPaymentMethod(): ?string
+    {
+        return $this->PaymentMethod;
+    }
+
+    public function setPaymentMethod(?string $PaymentMethod): self
+    {
+        $this->PaymentMethod = $PaymentMethod;
+
+        return $this;
+    }
+
+    public function getOperatorId(): ?string
+    {
+        return $this->operatorId;
+    }
+
+    public function setOperatorId(?string $operatorId): self
+    {
+        $this->operatorId = $operatorId;
+
+        return $this;
+    }
+
+    public function getPaymentDate(): ?string
+    {
+        return $this->paymentDate;
+    }
+
+    public function setPaymentDate(?string $paymentDate): self
+    {
+        $this->paymentDate = $paymentDate;
 
         return $this;
     }
