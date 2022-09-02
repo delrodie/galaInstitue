@@ -83,7 +83,10 @@
 					'customer_id' => 1,
 					'customer_email' => 'delrodie@gmail.com',
 					'customer_address' => 'Cocody',
-					'customer_zip_code' => '00225'
+					'customer_zip_code' => '00225',
+					'metadata' => $reference,
+					'identite' => $participant['nom'].' '.$participant['prenoms'],
+					'place' => $participant['place']
 				];
 			}else{
 				$message = [

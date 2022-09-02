@@ -98,6 +98,7 @@
 						description: 'Participation Gala Institute',
                         notify_url: '{{ absolute_url(path('app_cinetpay_notify')) }}',
                         return_url: '{{ absolute_url(path('app_participation_new')) }}',
+						metada: response.customer_reference,
 						customer_name: response.customer_name,
 						customer_surname: response.customer_surname,
 						customer_phone_number: response.customer_phone_number,
@@ -108,6 +109,11 @@
 						customer_id: response.customer_id,
 						customer_email: response.customer_email,
 						customer_address: response.customer_address,
+						metadata : response.metadata,
+						invoice_data: {
+                            'identite' : response.identite,
+							'place' : response.place
+						}
 					});
                     CinetPay.waitResponse(function (data) {
                         console.log(data);
