@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Participation;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -38,6 +39,18 @@ class ParticipationRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+	
+	/**
+	 * @throws NonUniqueResultException
+	 */
+	public function findByIdTransaction($idTransaction)
+	{
+		return $this->createQueryBuilder('p')
+			->where('p.idTransaction = :idTransaction')
+			->setParameter('idTransaction', $idTransaction)
+			->getQuery()->getOneOrNullResult()
+			;
+	}
 
 //    /**
 //     * @return Participation[] Returns an array of Participation objects

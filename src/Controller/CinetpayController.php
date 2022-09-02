@@ -33,7 +33,7 @@ class CinetpayController extends AbstractController
 	
 	    // Initialisation des variables
 	    $id_transaction = $request->get('cpm_trans_id'); //dd($id_transaction);
-	    $participation = $this->participationRepository->findOneBy(['id' => 3]);
+	    $participation = $this->participationRepository->findByIdTransaction($id_transaction);
 	    dd($participation);
 		
 		if (isset($id_transaction)){
