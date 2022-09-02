@@ -41,7 +41,7 @@ class CinetpayController extends AbstractController
 				
 				$Cinetpay = new CinetPay($site_id, $apikey);
 				
-				$Cinetpay->getPayStatus($id_transaction, $site_id); //dd($Cinetpay);
+				$Cinetpay->getPayStatus($id_transaction, $site_id); dd($Cinetpay);
 				
 				$amount = $Cinetpay->chk_amount;
 				$currency = $Cinetpay->chk_currency;
@@ -71,7 +71,7 @@ class CinetpayController extends AbstractController
 					//die();
 				}
 				
-				$participation = $this->participationRepository->findOneBy(['idTransaction' => $id_transaction]); dd($participation);
+				$participation = $this->participationRepository->findOneBy(['idTransaction' => $id_transaction]); //dd($participation);
 				if ($participation){
 					$participation->setStatutsTransaction('VALIDE');
 					$participation->setStatus(true);
